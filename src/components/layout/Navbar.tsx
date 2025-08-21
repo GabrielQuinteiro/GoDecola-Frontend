@@ -1,33 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Box} from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { setNavbarHeight } from '../../features/layout/layoutSlice';
+import { useElementHeight } from '../../hooks/useElementHeight';
+import { useScrollPosition } from '../../hooks/useScrollPosition';
 
 const Navbar: React.FC = () => {
+    const appBarRef = useRef<HTMLElement>(null);
+    useElementHeight(appBarRef, setNavbarHeight);
+    
+    const scrollY = useScrollPosition();
+
     const location = useLocation();
     const isHomePage = location.pathname === '/';
-    const [scrollY, setScrollY] = React.useState(0);
-
-    const dispatch = useAppDispatch();
-    const appBarRef = React.useRef<HTMLDivElement | null>(null);
-    
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        }
-
-        window.addEventListener('scroll', handleScroll);
-
-        if (appBarRef.current) {
-            const height = appBarRef.current.clientHeight;
-            dispatch(setNavbarHeight(height));
-        }
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }, [dispatch])
 
     // pega as alturas da navbar e do hero
     const { heroHeight, navbarHeight } = useAppSelector((state) => state.layout);
