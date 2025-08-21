@@ -1,20 +1,14 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import heroBgImage from '../../../assets/images/HomeBanner.jpg';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useEffect, useRef } from "react";
-import { useAppDispatch } from '../../../app/hooks';
+import { useRef } from "react";
 import { setHeroHeight } from "../../layout/layoutSlice";
+import { useElementHeight } from "../../../hooks/useElementHeight";
 
 const HeroSection: React.FC = () => {
-    const dispatch = useAppDispatch();
     const heroRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        if (heroRef.current) {
-            const height = heroRef.current.clientHeight;
-            dispatch(setHeroHeight(height));
-        }
-    }, [dispatch]);
+    useElementHeight(heroRef, setHeroHeight);
 
     return (
         <Box
