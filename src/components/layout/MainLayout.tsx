@@ -4,6 +4,8 @@ import Navbar from './Navbar.tsx';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import { useLocation } from 'react-router-dom';
+// 1. Importe o seu provedor de tema
+import { AppThemeProvider } from '../../AppThemeProvider.tsx';
 
 const MainLayout: React.FC = () => {
     const theme = useTheme();
@@ -12,7 +14,7 @@ const MainLayout: React.FC = () => {
     const isHomePage = location.pathname === '/';
 
     return (
-        <>
+        <AppThemeProvider>
             <Navbar />
             <Box 
                 component="main"
@@ -20,7 +22,7 @@ const MainLayout: React.FC = () => {
             >
                 <Outlet />
             </Box>
-        </>
+        </AppThemeProvider>
     );
 }
 
