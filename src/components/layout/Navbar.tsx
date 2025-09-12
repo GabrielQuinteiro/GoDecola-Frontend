@@ -77,11 +77,10 @@ const Navbar: React.FC = () => {
                     </Button>
                 </Box>
 
-                {}
                 <Button
                     variant="contained"
                     component={Link}
-                    to="/cadastro"
+                    to="/login"
                     sx={{
                         backgroundColor: 'primary.main',
                         color: 'text.secondary',
