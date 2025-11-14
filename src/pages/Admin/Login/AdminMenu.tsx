@@ -5,8 +5,11 @@ import {
   Divider,
 } from "@mui/material";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Link as RouterLink } from "react-router-dom";
+//import { Link as RouterLink } from "react-router-dom";
 import { styled } from '@mui/material/styles';
+import { useMsal, useIsAuthenticated } from "@azure/msal-react";
+import { loginRequest } from "../../../app/authConfig";
+import { Navigate } from "react-router-dom";
 
 const MenuButton = (props: any) => (
   <Button
@@ -33,6 +36,20 @@ const MenuContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function AdminMenu() {
+
+  const { instance } = useMsal();
+  const isAuthenticated = useIsAuthenticated();
+
+  const handleLogin = () => {
+    instance.loginRedirect(loginRequest).catch((e) => {
+      console.error(e);
+    });
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+
   return (
     <Stack spacing={4} sx={{ width: '100%' }}>
       <Typography variant="h1" sx={{ color: 'common.white', textAlign: 'left' }}>
@@ -40,7 +57,7 @@ export default function AdminMenu() {
       </Typography>
 
       <MenuContainer>
-        <MenuButton component={RouterLink} to="/admin/dashboard">
+        <MenuButton onClick={handleLogin}>
           Entrar
         </MenuButton>
 

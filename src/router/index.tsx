@@ -1,9 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout.tsx";
 import HomePage from "../features/home/HomePage.tsx";
 import { RegisterPage } from "../pages/Register";
 import LoginPage from "../pages/Login/LoginPage.tsx";
-import AdminLoginPage from "../pages/AdminLogin/AdminLoginPage.tsx";
+import AdminLoginPage from "../pages/Admin/Login/AdminLoginPage.tsx";
+import { ProtectedAdminLayout } from "../pages/Admin/ProtectedAdminLayout.tsx";
+import { AdminDashboard } from "../pages/Admin/AdminDashBoard.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -27,5 +29,21 @@ export const router = createBrowserRouter([
     {
         path: '/admin/login', 
         element: <AdminLoginPage />
+    },
+    {
+        // protege todas as rotas filhas
+        path: '/admin', 
+        element: <ProtectedAdminLayout />,
+        children: [
+            {
+                path: 'dashboard',
+                element: <AdminDashboard />
+            },
+            {
+                // se o usuario for para /admin, redireciona para o dashboard
+                index: true, 
+                element: <Navigate to="dashboard" replace />
+            }
+        ]
     }
 ]);
