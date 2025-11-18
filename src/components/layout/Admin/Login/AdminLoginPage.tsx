@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { AppThemeProvider } from "../../../AppThemeProvider";
+import { AppThemeProvider } from "../../../../AppThemeProvider";
 import AdminMenu from "./AdminMenu";
 import { styled } from '@mui/material/styles';
-import adminImageUrl from '../../../assets/images/admin-login-background.jpg';
+import adminImageUrl from '../../../../assets/images/admin-login-background.jpg';
 
 const StyledImage = styled('img')(({ theme }) => ({
   width: 538,

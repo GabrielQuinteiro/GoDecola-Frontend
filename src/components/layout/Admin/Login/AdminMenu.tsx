@@ -5,10 +5,9 @@ import {
   Divider,
 } from "@mui/material";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-//import { Link as RouterLink } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { useMsal, useIsAuthenticated } from "@azure/msal-react";
-import { loginRequest } from "../../../app/authConfig";
+import { loginRequest } from "../../../../app/authConfig";
 import { Navigate } from "react-router-dom";
 
 const MenuButton = (props: any) => (

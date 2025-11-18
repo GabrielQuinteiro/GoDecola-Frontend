@@ -3,9 +3,9 @@ import MainLayout from "../components/layout/MainLayout.tsx";
 import HomePage from "../features/home/HomePage.tsx";
 import { RegisterPage } from "../pages/Register";
 import LoginPage from "../pages/Login/LoginPage.tsx";
-import AdminLoginPage from "../pages/Admin/Login/AdminLoginPage.tsx";
-import { ProtectedAdminLayout } from "../pages/Admin/ProtectedAdminLayout.tsx";
-import { AdminDashboard } from "../pages/Admin/AdminDashBoard.tsx";
+import AdminLoginPage from "../components/layout/Admin/Login/AdminLoginPage.tsx";
+import { ProtectedAdminLayout } from "../components/layout/Admin/ProtectedAdminLayout.tsx";
+import { AdminDashboard } from "../components/layout/Admin/AdminDashBoard.tsx";
 
 export const router = createBrowserRouter([
     {
